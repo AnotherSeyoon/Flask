@@ -3,29 +3,24 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Title</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
 </head>
 <body>
-    <h1>대문 페이지</h1>
-    이름 : {{user}}
-    레벨 : {{data.level}}
-    포인트 : {{data.point}}
-    경험치 : {{data.exp}}
-    
-    <!--post
     <form action="/" method="post">
-        다음 이름 : <input type="text" name="user">
-        <input type="submit" value="전송하기">
+        <p><label for="keyword1">키워드1 </label><input type="text" name="keyword1" id="keyword1"></p>
+        <p><label for="keyword2">키워드2 </label><input type="text" name="keyword2" id="keyword2"></p>
+        <button type="submit">검색</button>
     </form>
-    -->
 
-    <!--get
-    <form action="/" method="get">
-        다음이름 : <input type="text" name="user">
-        <input type="submit" value="전송하기">
-    </form>
-    -->
-    
+    {% if data %}
+    <div id="result">
+        <!-- {{data}} -->
+        <!-- whitespace를 위해 1줄 처리 -->
+    {% for k,v in data.items() %}<div class="box box{{loop.index}}" value="{{v}}">{{k}}</div>{% endfor %}
+    {% endif %}
+
+    <script src="{{url_for('static',filename='index.js')}}"></script>
 </body>
 </html>
